@@ -182,8 +182,29 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url('img/hero.jpg') center center / cover no-repeat;
+  background: var(--charcoal);
   overflow: hidden;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation: heroSlide 21s infinite;
+}
+.hero-slide:nth-child(1) { animation-delay: 0s; }
+.hero-slide:nth-child(2) { animation-delay: 7s; }
+.hero-slide:nth-child(3) { animation-delay: 14s; }
+
+@keyframes heroSlide {
+  0%        { opacity: 0; }
+  7%        { opacity: 1; }
+  33%       { opacity: 1; }
+  40%       { opacity: 0; }
+  100%      { opacity: 0; }
 }
 
 .hero-overlay {
@@ -420,6 +441,69 @@ a { color: inherit; text-decoration: none; }
   height: 380px;
   border: 0;
   border-radius: 4px;
+}
+
+/* === HOTELS === */
+.hotels-section { background: var(--ivory); }
+.hotels-intro {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--mid);
+  margin-top: -20px;
+  margin-bottom: 48px;
+}
+.hotels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.hotel-card {
+  background: var(--white);
+  border: 1px solid var(--light-line);
+  border-radius: 4px;
+  padding: 28px 24px;
+  transition: box-shadow 0.2s;
+}
+.hotel-card:hover { box-shadow: 0 6px 24px rgba(90, 70, 120, 0.1); }
+.hotel-card--featured {
+  border-color: var(--blush);
+  border-width: 2px;
+}
+.hotel-distance {
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 8px;
+}
+.hotel-name {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--charcoal);
+  margin-bottom: 8px;
+}
+.hotel-desc {
+  font-size: 13px;
+  color: var(--mid);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+.hotel-phone {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--rose);
+  border-bottom: 1px solid var(--light-line);
+  padding-bottom: 2px;
+  transition: color 0.2s, border-color 0.2s;
+}
+.hotel-phone:hover { color: var(--rose-dark); border-color: var(--rose-dark); }
+
+@media (max-width: 768px) {
+  .hotels-grid { grid-template-columns: 1fr; }
 }
 
 /* === RSVP === */

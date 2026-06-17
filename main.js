@@ -83,10 +83,11 @@ rsvpForm.addEventListener('submit', async (e) => {
   // Basic validation
   const name      = document.getElementById('rsvp-name').value.trim();
   const email     = document.getElementById('rsvp-email').value.trim();
+  const phone     = document.getElementById('rsvp-phone').value.trim();
   const attending = document.getElementById('rsvp-attending').value;
 
-  if (!name || !email || !attending) {
-    alert('Please fill in your name, email, and attendance selection.');
+  if (!name || !email || !phone || !attending) {
+    alert('Please fill in your name, email, cell phone, and attendance selection.');
     return;
   }
 
@@ -96,8 +97,9 @@ rsvpForm.addEventListener('submit', async (e) => {
   const formData = {
     name,
     email,
+    phone,
     attending: attending === 'yes' ? 'Attending' : 'Not attending',
-    guests:    document.getElementById('rsvp-guests').value,
+    hotel:     document.getElementById('rsvp-hotel').value,
     dietary:   document.getElementById('rsvp-dietary').value.trim(),
     timestamp: new Date().toISOString(),
   };
