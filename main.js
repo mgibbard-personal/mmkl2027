@@ -2,6 +2,38 @@
    Lexi & Max Wedding Website — main.js
    ========================================= */
 
+// ── GATE ──────────────────────────────────
+const INVITE_CODE = 'TEST123';
+
+(function () {
+  const gate    = document.getElementById('gate');
+  const input   = document.getElementById('gate-input');
+  const btn     = document.getElementById('gate-submit');
+  const error   = document.getElementById('gate-error');
+
+  if (localStorage.getItem('mmkl_unlocked') === '1') {
+    gate.style.display = 'none';
+    return;
+  }
+
+  function attempt() {
+    if (input.value.trim().toUpperCase() === INVITE_CODE) {
+      localStorage.setItem('mmkl_unlocked', '1');
+      gate.classList.add('unlocking');
+      setTimeout(() => gate.style.display = 'none', 650);
+    } else {
+      error.textContent = 'Incorrect code — please try again.';
+      input.classList.add('shake');
+      input.addEventListener('animationend', () => input.classList.remove('shake'), { once: true });
+      input.value = '';
+      input.focus();
+    }
+  }
+
+  btn.addEventListener('click', attempt);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
+})();
+
 // ── WEDDING DATE ──────────────────────────
 const WEDDING_DATE = new Date('2027-05-22T16:00:00');
 
@@ -29,6 +61,27 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000);
 
+
+// ── HERO SLIDESHOW ────────────────────────
+(function () {
+  const slides = Array.from(document.querySelectorAll('.hero-slide'));
+  let current = 0;
+  slides[0].classList.add('active');
+
+  setInterval(() => {
+    const next = (current + 1) % slides.length;
+    // Bring incoming slide on top and fade it in
+    slides[next].style.zIndex = 2;
+    slides[next].classList.add('active');
+    // After the transition finishes, retire the outgoing slide
+    setTimeout(() => {
+      slides[current].classList.remove('active');
+      slides[current].style.zIndex = 0;
+      slides[next].style.zIndex = 1;
+      current = next;
+    }, 2000);
+  }, 7000);
+})();
 
 // ── STICKY NAV ────────────────────────────
 const nav = document.getElementById('site-nav');
@@ -71,7 +124,7 @@ document.querySelectorAll('.add-to-cal').forEach(btn => {
 //    3. Deploy → Web App → copy the URL
 //    4. Paste it below as GOOGLE_SCRIPT_URL
 //
-const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwV-ofgfO1AF4tD6D18h1EPc0Wzft72ntlrAptUnBQrFf0ktfPHS9Enz7V0iM1SwSo36Q/exec';
 
 const rsvpForm    = document.getElementById('rsvp-form');
 const rsvpSuccess = document.getElementById('rsvp-success');
