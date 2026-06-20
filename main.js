@@ -154,6 +154,7 @@ rsvpForm.addEventListener('submit', async (e) => {
     attending: attending === 'yes' ? 'Attending' : 'Not attending',
     hotel:     document.getElementById('rsvp-hotel').value,
     dietary:   document.getElementById('rsvp-dietary').value.trim(),
+    song:      document.getElementById('rsvp-song').value.trim(),
     timestamp: new Date().toISOString(),
   };
 

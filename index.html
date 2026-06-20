@@ -41,7 +41,7 @@
   <!-- ===================== NAVIGATION ===================== -->
   <nav class="site-nav" id="site-nav">
     <div class="nav-inner">
-      <a href="#top" class="nav-logo">L &amp; M</a>
+      <a href="#top" class="nav-logo">LVL &amp; MBG</a>
       <button class="nav-hamburger" id="nav-toggle" aria-label="Toggle navigation">
         <span></span><span></span><span></span>
       </button>
@@ -58,7 +58,14 @@
   <section class="hero" id="hero">
     <div class="hero-slide" style="background-image:url('img/hero.jpeg')"></div>
     <div class="hero-slide" style="background-image:url('img/hero2.jpg')"></div>
-    <div class="hero-slide" style="background-image:url('img/hero3.jpg')"></div>
+    <div class="hero-slide hero-slide--collage">
+      <div class="collage-grid">
+        <img src="img/1-IMG_4030.jpg"   alt="" class="collage-img collage-a" style="object-position: 60% center;">
+        <img src="img/8-IMG_4082.jpg"   alt="" class="collage-img collage-b" style="object-position: center 30%;">
+        <img src="img/7-IMG_4079.jpg"   alt="" class="collage-img collage-c" style="object-position: center 40%;">
+        <img src="img/39-IMG_4302.jpg"  alt="" class="collage-img collage-d">
+      </div>
+    </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="hero-eyebrow">We're getting married</p>
@@ -105,18 +112,39 @@
       <div class="events-grid">
 
         <div class="event-card">
+          <div class="event-icon"><i class="fa fa-cutlery"></i></div>
+          <p class="event-date">May 21, 2027</p>
+          <h3 class="event-name">Welcome Dinner</h3>
+          <p class="event-time">Details TBD</p>
+          <p class="event-desc">
+            Join us the evening before the wedding for a relaxed welcome dinner. More details to follow.
+          </p>
+          <a href="#" class="btn btn-outline add-to-cal" data-name="LVL & MBG — Welcome Dinner" data-date="2027-05-21T18:00:00">Add to Calendar</a>
+        </div>
+
+        <div class="event-card">
+          <div class="event-icon"><i class="fa fa-leaf"></i></div>
+          <p class="event-date">May 22, 2027</p>
+          <h3 class="event-name">Morning Yoga</h3>
+          <p class="event-time">Time TBD</p>
+          <p class="event-desc">
+            Start the morning with us in the back garden of the Lavender Inn. A gentle class to ease into the big day.
+          </p>
+        </div>
+
+        <div class="event-card">
           <div class="event-icon"><i class="fa fa-heart-o"></i></div>
           <p class="event-date">May 22, 2027</p>
           <h3 class="event-name">Ceremony</h3>
           <p class="event-time">4:00 PM</p>
           <p class="event-desc">
             <!-- ✏️ EDIT: Your ceremony details -->
-            Join us as we exchange our vows in an intimate outdoor ceremony. Cocktail hour to follow.
+            Join us as we exchange our vows in an intimate outdoor ceremony.
           </p>
           <a href="#" class="btn btn-outline add-to-cal" data-name="Lexi & Max — Wedding Ceremony" data-date="2027-05-22T16:00:00">Add to Calendar</a>
         </div>
 
-        <div class="event-card event-card--accent">
+        <div class="event-card">
           <div class="event-icon"><i class="fa fa-glass"></i></div>
           <p class="event-date">May 22, 2027</p>
           <h3 class="event-name">Reception</h3>
@@ -154,16 +182,11 @@
             <i class="fa fa-map-marker"></i> Get Directions
           </a>
         </div>
-        <div class="venue-map">
-          <!-- ✏️ EDIT: Replace this src with your actual Google Maps embed URL -->
-          <!-- Get one at: maps.google.com → Share → Embed a map → Copy HTML, paste just the src URL here -->
-          <iframe
-            title="Venue Map"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3307.8!2d-119.2425!3d34.4480!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80e9b2a1b1b1b1b1%3A0x1234567890abcdef!2sLavender+Inn%2C+210+E+Matilija+St%2C+Ojai%2C+CA+93023!5e0!3m2!1sen!2sus!4v1700000000000"
-            allowfullscreen=""
-            loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+        <div class="venue-media">
+          <img src="img/front.jpg" alt="The Lavender Inn, Ojai" class="venue-photo">
+          <div class="venue-logo-wrap">
+            <img src="img/logo.webp" alt="Lavender Inn logo" class="venue-logo">
+          </div>
         </div>
       </div>
     </div>
@@ -270,7 +293,7 @@
     <div class="container">
       <p class="section-eyebrow text-center">We hope to see you there</p>
       <h2 class="section-title text-center">RSVP</h2>
-      <p class="rsvp-subtitle text-center">Please reply by <strong>April 1, 2027</strong></p>
+      <p class="rsvp-subtitle text-center">Please reply by <strong>August 1, 2026</strong></p>
 
       <div class="rsvp-form-wrap">
         <div id="rsvp-success" class="rsvp-success" style="display:none;">
@@ -328,6 +351,11 @@
               <label for="rsvp-dietary">Dietary restrictions</label>
               <input type="text" id="rsvp-dietary" name="dietary" placeholder="Allergies, dietary needs…">
             </div>
+          </div>
+
+          <div class="form-group form-group--full">
+            <label for="rsvp-song">Song request</label>
+            <input type="text" id="rsvp-song" name="song" placeholder="A song you'd love to hear on the dance floor">
           </div>
 
           <div class="form-submit text-center">
