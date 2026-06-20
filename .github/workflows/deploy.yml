@@ -27,6 +27,15 @@ jobs:
           INVITE_CODE: ${{ secrets.INVITE_CODE }}
         run: python3 -c "import os; c=open('main.js').read(); open('main.js','w').write(c.replace('__INVITE_CODE__',os.environ['INVITE_CODE']))"
 
+      - name: Verify injection
+        run: |
+          if grep -q '__INVITE_CODE__' main.js; then
+            echo "ERROR: placeholder was not replaced"
+            exit 1
+          else
+            echo "OK: invite code injected successfully"
+          fi
+
       - uses: actions/configure-pages@v4
 
       - uses: actions/upload-pages-artifact@v3
