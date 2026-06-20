@@ -17,7 +17,7 @@ const INVITE_CODE = '__INVITE_CODE__';
   }
 
   function attempt() {
-    if (input.value.trim().toUpperCase() === INVITE_CODE) {
+    if (input.value.trim().toLowerCase() === INVITE_CODE.toLowerCase()) {
       localStorage.setItem('mmkl_unlocked', '1');
       gate.classList.add('unlocking');
       setTimeout(() => gate.style.display = 'none', 650);

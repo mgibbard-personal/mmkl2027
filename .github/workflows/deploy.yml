@@ -23,7 +23,17 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Inject invite code
-        run: sed -i "s/__INVITE_CODE__/${{ secrets.INVITE_CODE }}/g" main.js
+        env:
+          INVITE_CODE: ${{ secrets.INVITE_CODE }}
+        run: |
+          python3 -c "
+import os
+code = os.environ['INVITE_CODE']
+with open('main.js') as f:
+    content = f.read()
+with open('main.js', 'w') as f:
+    f.write(content.replace('__INVITE_CODE__', code))
+          "
 
       - uses: actions/configure-pages@v4
 
