@@ -3,7 +3,7 @@
    ========================================= */
 
 // ── GATE ──────────────────────────────────
-const INVITE_CODE = 'TEST123';
+const INVITE_CODE = '__INVITE_CODE__';
 
 (function () {
   const gate    = document.getElementById('gate');
@@ -101,21 +101,14 @@ navLinks.querySelectorAll('a').forEach(link => {
 });
 
 
-// ── ADD TO CALENDAR ───────────────────────
-document.querySelectorAll('.add-to-cal').forEach(btn => {
-  btn.addEventListener('click', e => {
-    e.preventDefault();
-    const name  = btn.dataset.name;
-    const start = btn.dataset.date.replace(/[-:]/g, '') + 'Z';
-    const end   = start;
-    const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE` +
-      `&text=${encodeURIComponent(name)}` +
-      `&dates=${encodeURIComponent(start)}/${encodeURIComponent(end)}` +
-      `&details=${encodeURIComponent("Lexi & Max's Wedding — May 22, 2027. Visit mmkl2027.com for details.")}`;
-    window.open(gcalUrl, '_blank');
-  });
-});
 
+
+// ── HOTEL OTHER FIELD ─────────────────────
+const hotelSelect    = document.getElementById('rsvp-hotel');
+const hotelOtherWrap = document.getElementById('hotel-other-wrap');
+hotelSelect.addEventListener('change', () => {
+  hotelOtherWrap.style.display = hotelSelect.value === 'other' ? 'block' : 'none';
+});
 
 // ── RSVP FORM ─────────────────────────────
 // 📌 TO SET UP GOOGLE SHEETS COLLECTION:
@@ -152,9 +145,10 @@ rsvpForm.addEventListener('submit', async (e) => {
     email,
     phone,
     attending: attending === 'yes' ? 'Attending' : 'Not attending',
-    hotel:     document.getElementById('rsvp-hotel').value,
-    dietary:   document.getElementById('rsvp-dietary').value.trim(),
-    song:      document.getElementById('rsvp-song').value.trim(),
+    hotel:      document.getElementById('rsvp-hotel').value,
+    hotel_other: document.getElementById('rsvp-hotel-other').value.trim(),
+    dietary:    document.getElementById('rsvp-dietary').value.trim(),
+    song:       document.getElementById('rsvp-song').value.trim(),
     timestamp: new Date().toISOString(),
   };
 
